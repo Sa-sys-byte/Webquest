@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+  <style>
+    img {
+      border-radius: 12px;
+      margin: 63px;
+    }
+    p1 {
+      margin: 63px;
+    }
+    body {
+      background: black;
+       color: white; /* Adding this to make sure text is visible against the black background */
+      font-size: 3em;
+    }
+  hakai{
+    margin: 10px;
+  }
+  h1,p{
+    margin: 63px;
+  }
+  /* Importing Google font - Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+p1 {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+p1 span {
+    color: #BD53ED;
+    position: relative;
+}
+
+p1 span::before {
+    content: "";
+    height: 140px;
+    width: 2px;
+    position: absolute;
+    top: 50%;
+    right: -8px;
+    background: #BD53ED;
+    transform: translateY(-45%);
+    animation: blink 0.7s infinite;
+    
+}
+
+p1 span.stop-blinking::before {
+    animation: none;
+}
+
+@keyframes blink {
+    50% { opacity: 0 }
+}
+  </style>
+</head>
+<body>
+  <div class="hakai">
+    <h1>Webquest apps</h1>
+    <hr>
+    <p1>Desgined by <span></span></p1>
+  <a href="h.html" title="chatbot"> <img src="H.jpg" width="35%" alt="Chatbot" /> </a>
+  <p>Chatbot</p>
+  <a href="calculator.html" title="calculator"> <img src="I.jpg" width="35%" alt="Calculator" /> </a>
+  <p>Calculator</p>
+  <a href="vnaaki.html" title="pronouncer"> <img src="Lg.jpg" width="35%" alt="Pronouncer" /> </a>
+  <p>Pronouncer</p>
+<a href="clock.html" title="clock"> <img src="T.jpg" width="35%" alt="clock" /> </a>
+  <p>clock</p> 
+  <a href="yh.html" title="image-generator"> <img src="Image.jpg" width="35%" alt="clock" /> </a>
+  <p>imageart</p>
+  <a href="T.html" title="to-do list"> <img src="8.jpg" width="35%" alt="clock" /> </a>
+  <p>notes</p> 
+  <a href="https://googlemaps.com" title="maps"> <img src="hakai.jpg" width="35%" alt="maps" /> </a>
+  <p>maps</p>
+  <a href="index.html" title="know weather"> <img src="6.jpg" width="35%" alt="weather" /> </a>
+  <p>weather</p> 
+  </div>   
+  <script>
+  const dynamicText = document.querySelector("p1 span");
+const words = ["satyam", "HTML", "CSS", "Java"];
+
+// Variables to track the position and deletion status of the word
+let wordIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+
+const typeEffect = () => {
+    const currentWord = words[wordIndex];
+    const currentChar = currentWord.substring(0, charIndex);
+    dynamicText.textContent = currentChar;
+    dynamicText.classList.add("stop-blinking");
+
+    if (!isDeleting && charIndex < currentWord.length) {
+        // If condition is true, type the next character
+        charIndex++;
+        setTimeout(typeEffect, 200);
+    } else if (isDeleting && charIndex > 0) {
+        // If condition is true, remove the previous character
+        charIndex--;
+        setTimeout(typeEffect, 100);
+    } else {
+        // If word is deleted then switch to the next word
+        isDeleting = !isDeleting;
+        dynamicText.classList.remove("stop-blinking");
+        wordIndex = !isDeleting ? (wordIndex + 1) % words.length : wordIndex;
+        setTimeout(typeEffect, 1200);
+    }
+}
+
+typeEffect();
+  </script>
+</body>
+</html>
